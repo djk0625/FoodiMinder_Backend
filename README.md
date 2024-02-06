@@ -1,1 +1,1 @@
-# FoodiMinder_Backend
+# 24SS_foodiMinder
