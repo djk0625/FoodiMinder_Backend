@@ -19,10 +19,6 @@ public class UserServiceImpl implements UserService {
     @Override
     public String signUp(UserDto userDto) throws Exception {
 
-        if(userRepository.findByUserId(userDto.getUserId()).isPresent()) {
-            throw new Exception("이미 존재하는 아이디입니다.");
-        }
-
         if(!userDto.getUserPass().equals(userDto.getCheckedPassword())) {
             throw new Exception("비밀번호가 일치하지 않습니다.");
         }
@@ -30,6 +26,17 @@ public class UserServiceImpl implements UserService {
         User user = userRepository.save(userDto.toEntity());
 
         return user.getUserId();
+    }
+
+    @Transactional
+    @Override
+    public Boolean idDuplChk(UserDto userDto) throws Exception {
+
+        if(userRepository.findByUserId(userDto.getUserId()).isPresent()) {
+            throw new Exception("이미 존재하는 아이디입니다.");
+        }
+
+        return true;
     }
 
 }
