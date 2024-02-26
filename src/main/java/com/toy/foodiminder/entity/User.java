@@ -1,15 +1,14 @@
 package com.toy.foodiminder.entity;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @NoArgsConstructor
+@AllArgsConstructor
 @Getter
-@Setter
+@Builder
 @Entity
 @Table(name = "t_co_user")
 public class User {
