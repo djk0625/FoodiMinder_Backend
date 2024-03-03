@@ -41,10 +41,13 @@ public class UserServiceImpl implements UserService {
     @Override
     public Boolean idDuplChk(UserDto userDto) throws Exception {
 
-        if(userRepository.findByUserId(userDto.getUserId()).isPresent()) {
-            throw new Exception("이미 존재하는 아이디입니다.");
+        try {
+            if (userRepository.findByUserId(userDto.getUserId()).isPresent()) {
+                return false;
+            }
+        } catch (Exception e) {
+            throw new Exception();
         }
-
         return true;
     }
 
